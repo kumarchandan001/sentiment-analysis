@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+.env
+.venv/
+database.db
+IMDB Dataset.csv
+.DS_Store
+Thumbs.db

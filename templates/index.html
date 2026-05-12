@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <a href="/history" class="history-link">View History <i class='bx bx-right-arrow-alt'></i></a>
+
+    <main class="main-container">
+        <div class="card analyzer-card">
+            <header class="card-header">
+                <h1>Sentiment Analyzer ✨</h1>
+                <p>Analyze the sentiment of any movie review below.</p>
+            </header>
+            <div class="card-body">
+                <div class="example-buttons">
+                    <button class="example-btn" data-text="The plot was predictable and the acting was mediocre at best.">Negative Example</button>
+                    <button class="example-btn" data-text="A masterpiece of cinema! The performances were breathtaking and the story was unforgettable.">Positive Example</button>
+                </div>
+                <div class="textarea-container">
+                    <textarea id="reviewText" placeholder="Enter a review..."></textarea>
+                    <div class="text-metrics">
+                        Word Count: <span id="wordCount">0</span>
+                    </div>
+                </div>
+                <button id="analyzeBtn">
+                    <span class="btn-text">Analyze</span>
+                    <span class="loader"></span>
+                </button>
+                <div id="result" class="result">
+                    <h2 id="predictionResult"></h2>
+                    <div class="confidence-bar-container">
+                        <div id="confidenceBar" class="confidence-bar"></div>
+                    </div>
+                    <span id="confidenceText"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card dashboard-card">
+            <header class="card-header">
+                <h2>Live Project Stats 📊</h2>
+            </header>
+            <div class="card-body">
+                <div class="stats-grid">
+                    <div id="totalReviewsStat" class="stat-box">
+                        <i class='bx bxs-file-doc icon'></i>
+                        <div class="stat-info">
+                            <h4>Total Analyzed</h4>
+                            <p>0</p>
+                        </div>
+                    </div>
+                    <div id="positivePercentageStat" class="stat-box">
+                        <i class='bx bxs-smile icon'></i>
+                        <div class="stat-info">
+                            <h4>Overall Positivity</h4>
+                            <p>0%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="sentimentChart"></canvas>
+                </div>
+                 <div class="how-it-works">
+                    <h3>How It Works 🧠</h3>
+                    <p>This app uses a <strong>Naive Bayes</strong> model trained on the IMDb dataset to predict sentiment.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
